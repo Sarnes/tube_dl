@@ -66,6 +66,7 @@ class Youtube:
         self.availableCountries = extraDetails['availableCountries']
         self.category = extraDetails['category']
         extraDetails = [i for i in y_data if "response" in i.keys()][0]["response"]["contents"]["twoColumnWatchNextResults"]["results"]["results"]["contents"]
+        """
         try:
             self.subscribers = extraDetails[1]['videoSecondaryInfoRenderer']["owner"]["videoOwnerRenderer"]["subscriberCountText"]["runs"][0]
         except:
@@ -101,7 +102,7 @@ class Youtube:
                     for k in s_data[i]:
                         self.streamingData.append(k)
         self.formats = list_streams(self.Formats())
-
+        """
     def get_js(self):
         base_data = get('https://youtube.com/watch?v=1').text
         js_url = 'https://youtube.com/'+findall(r'"jsUrl":"(.*?)"', base_data)[0]
