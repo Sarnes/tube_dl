@@ -46,7 +46,7 @@ class Youtube:
         except Exception:
             from tube_dl.tdexceptions import VideoError
             raise VideoError(vid)
-        yt_data = [i for i in y_data if "playerResponse" in i.keys()][0]["playerResponse"]
+        yt_data = y_data["playerResponse"]
         if yt_data["playabilityStatus"]["status"] == "ERROR":
             from tube_dl.tdexceptions import VideoError
             raise VideoError(vid)
@@ -68,7 +68,7 @@ class Youtube:
         extraDetails = yt_data['microformat']['playerMicroformatRenderer']
         self.availableCountries = extraDetails['availableCountries']
         self.category = extraDetails['category']
-        extraDetails = [i for i in y_data if "response" in i.keys()][0]["response"]["contents"]["twoColumnWatchNextResults"]["results"]["results"]["contents"]
+        # extraDetails = [i for i in y_data if "response" in i.keys()][0]["response"]["contents"]["twoColumnWatchNextResults"]["results"]["results"]["contents"]
         """
         try:
             self.subscribers = extraDetails[1]['videoSecondaryInfoRenderer']["owner"]["videoOwnerRenderer"]["subscriberCountText"]["runs"][0]
